@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashivadhan | Electrical Engineer Contact Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- QRCode.js Library for dynamic client-side QR generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            insta: '#E1306C',
+                            whatsapp: '#25D366',
+                            electric: '#38BDF8',
+                            dark: '#030712',
+                            cardDark: '#0B0F19'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+
+        .insta-bg {
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .electric-glow {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+        }
+
+        .glass-card {
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            will-change: transform;
+        }
+
+        .glass-card-inner {
+            transform: translateZ(25px);
+        }
+
+        .qr-container img {
+            margin: 0 auto;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Mouse Follower Glow Spotlight */
+        #cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 500px;
+            margin-left: -250px;
+            margin-top: -250px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(14, 165, 233, 0.08) 35%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            transition: transform 0.05s ease-out;
+            will-change: transform;
+        }
+
+        /* Dynamic Canvas for Thunderstorm & Lightning */
+        #storm-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .magnetic-btn {
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease;
+        }
+
+        /* Lightning Pulse Effect */
+        @keyframes electricPulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        .animate-electric {
+            animation: electricPulse 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-slate-950 relative">
+
+    <!-- Storm & Thunder Lightning Background Canvas -->
+    <canvas id="storm-canvas"></canvas>
+
+    <!-- Interactive Mouse Glow Spotlight -->
+    <div id="cursor-glow"></div>
+
+    <!-- Main Content Layer -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl flex-grow flex flex-col justify-center items-center z-10 relative">
+        
+        <!-- Header Profile Card with 3D Tilt -->
+        <header class="tilt-card w-full glass-card rounded-3xl p-6 sm:p-10 mb-8 text-center shadow-2xl relative overflow-hidden group transition-all duration-300">
+            <!-- Animated Gradient Electric Border Line -->
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sky-500 via-cyan-300 to-indigo-500"></div>
+            
+            <div class="glass-card-inner">
+                <!-- Electrical Engineer Branding Badge Avatar -->
+                <div class="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-5 animate-electric">
+                    <div class="w-full h-full rounded-full p-1 bg-gradient-to-tr from-sky-600 via-cyan-400 to-indigo-600 electric-glow flex items-center justify-center">
+                        <div class="w-full h-full rounded-full bg-slate-950 flex flex-col items-center justify-center border-2 border-sky-400/40 relative overflow-hidden group-hover:border-sky-300 transition-colors">
+                            <!-- Circuit Board Lines SVG Background -->
+                            <svg class="absolute inset-0 w-full h-full opacity-20 text-sky-400" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M10 50 H30 L40 30 H60 L70 50 H90" />
+                                <path d="M50 10 V30 L30 40 V60 L50 70 V90" />
+                                <circle cx="30" cy="30" r="3" fill="currentColor" />
+                                <circle cx="70" cy="50" r="3" fill="currentColor" />
+                                <circle cx="30" cy="40" r="3" fill="currentColor" />
+                            </svg>
+                            <i class="fa-solid fa-bolt-lightning text-4xl sm:text-5xl text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.8)] mb-0.5"></i>
+                            <span class="text-[10px] font-black font-mono tracking-widest text-sky-300 uppercase">EE LOGIC</span>
+                        </div>
+                    </div>
+                    <span class="absolute bottom-1 right-1 bg-sky-400 text-slate-950 text-xs px-2.5 py-0.5 rounded-full font-extrabold shadow-lg flex items-center gap-1.5 border border-slate-900">
+                        <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span> EE
+                    </span>
+                </div>
+
+                <!-- Profile Info -->
+                <h1 class="font-heading text-3xl sm:text-5xl font-black tracking-tight text-white mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-100 to-sky-300">
+                    Shashivadhan
+                </h1>
+                
+                <!-- Electrical Engineer Tag -->
+                <div class="inline-flex items-center gap-2 bg-sky-950/80 border border-sky-500/30 px-4 py-1.5 rounded-full text-sky-300 text-sm sm:text-base font-semibold mb-4 shadow-inner">
+                    <i class="fa-solid fa-microchip text-sky-400"></i>
+                    <span>Electrical Engineer</span>
+                </div>
+
+                <p class="text-pink-400 font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-instagram text-xl"></i> @a_warrier_without_worries
+                </p>
+                <p class="text-slate-300 text-sm sm:text-base max-w-lg mx-auto leading-relaxed font-normal">
+                    Welcome! Move your cursor or tap to trigger high-voltage lightning strikes across the clouds. Scan the QR codes below to connect with me instantly.
+                </p>
+            </div>
+        </header>
+
+        <!-- Quick Copy WhatsApp Banner -->
+        <div class="w-full glass-card rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-l-4 border-sky-400 shadow-xl z-10">
+            <div class="flex items-center gap-4 text-center sm:text-left">
+                <div class="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0 mx-auto sm:mx-0 shadow-inner">
+                    <i class="fa-solid fa-phone text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Direct Contact / WhatsApp</span>
+                    <p class="text-xl font-bold text-white font-mono tracking-wide">+91 7675078002</p>
+                </div>
+            </div>
+            <button onclick="copyToClipboard('+917675078002')" id="copyBtn" class="magnetic-btn w-full sm:w-auto bg-slate-800/90 hover:bg-slate-700 active:scale-95 text-slate-100 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 border border-slate-700/80 shadow-md">
+                <i class="fa-regular fa-copy"></i> Copy Number
+            </button>
+        </div>
+
+        <!-- QR Codes & Direct Action Grid -->
+        <section class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 z-10">
+            
+            <!-- Instagram Card -->
+            <div class="tilt-card glass-card rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-2xl hover:border-pink-500/50 transition-all duration-300 group">
+                <div class="glass-card-inner flex flex-col items-center w-full">
+                    <div class="w-14 h-14 rounded-2xl insta-bg flex items-center justify-center text-white text-3xl mb-4 shadow-lg shadow-pink-500/25 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <h2 class="font-heading text-2xl font-bold text-white mb-1">Instagram</h2>
+                    <p class="text-xs text-slate-400 mb-6">Scan QR or click below to view profile</p>
+
+                    <!-- Dynamic QR Container -->
+                    <div class="bg-white p-4 rounded-2xl shadow-2xl mb-6 relative group-hover:shadow-pink-500/20 transition-all transform group-hover:scale-105 duration-300">
+                        <div id="insta-qr" class="qr-container"></div>
+                        <span class="text-[10px] text-slate-600 block mt-2 font-mono font-medium">@a_warrier_without_worries</span>
+                    </div>
+
+                    <div class="w-full mt-auto space-y-2.5">
+                        <a href="https://www.instagram.com/a_warrier_without_worries/" target="_blank" rel="noopener" 
+                           class="magnetic-btn w-full insta-bg hover:opacity-95 text-white py-3.5 px-5 rounded-xl font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-pink-600/30 active:scale-95">
+                            <i class="fa-brands fa-instagram text-lg"></i> Open Instagram
+                        </a>
+                        <button onclick="copyToClipboard('https://www.instagram.com/a_warrier_without_worries/')" class="w-full bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white py-2.5 px-4 rounded-xl text-xs font-medium transition-colors flex items-center justify-center gap-2 border border-slate-700/50">
+                            <i class="fa-solid fa-link text-xs"></i> Copy Profile Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WhatsApp Card -->
+            <div class="tilt-card glass-card rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-2xl hover:border-emerald-500/50 transition-all duration-300 group">
+                <div class="glass-card-inner flex flex-col items-center w-full">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center text-slate-950 text-3xl mb-4 shadow-lg shadow-emerald-500/25 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h2 class="font-heading text-2xl font-bold text-white mb-1">WhatsApp Chat</h2>
+                    <p class="text-xs text-slate-400 mb-6">Scan QR to start direct chat</p>
+
+                    <!-- Dynamic QR Container -->
+                    <div class="bg-white p-4 rounded-2xl shadow-2xl mb-6 relative group-hover:shadow-emerald-500/20 transition-all transform group-hover:scale-105 duration-300">
+                        <div id="wa-qr" class="qr-container"></div>
+                        <span class="text-[10px] text-slate-600 block mt-2 font-mono font-medium">+91 7675078002</span>
+                    </div>
+
+                    <div class="w-full mt-auto space-y-2.5">
+                        <a href="https://wa.me/917675078002?text=Hi%20Shashivadhan,%20I%20found%20your%20Electrical%20Engineer%20contact%20hub!" target="_blank" rel="noopener" 
+                           class="magnetic-btn w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 py-3.5 px-5 rounded-xl font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Chat on WhatsApp
+                        </a>
+                        <button onclick="copyToClipboard('https://wa.me/917675078002')" class="w-full bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white py-2.5 px-4 rounded-xl text-xs font-medium transition-colors flex items-center justify-center gap-2 border border-slate-700/50">
+                            <i class="fa-solid fa-link text-xs"></i> Copy Direct Chat Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 translate-y-20 opacity-0 transition-all duration-300 bg-sky-400 text-slate-950 px-6 py-3.5 rounded-2xl font-bold shadow-2xl flex items-center gap-2.5 text-sm z-50">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toastMsg">Copied to clipboard!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 text-slate-500 text-xs border-t border-slate-900/80 mt-12 z-10 relative">
+        <p>© <span id="year"></span> Shashivadhan | Electrical Engineer</p>
+        <p class="mt-1 text-slate-600">Hosted on GitHub Pages</p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Set dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Contact URLs
+        const instaUrl = "https://www.instagram.com/a_warrier_without_worries/";
+        const waUrl = "https://wa.me/917675078002";
+
+        // Generate QR Codes on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            new QRCode(document.getElementById("insta-qr"), {
+                text: instaUrl,
+                width: 150,
+                height: 150,
+                colorDark: "#030712",
+                colorLight: "#FFFFFF",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            new QRCode(document.getElementById("wa-qr"), {
+                text: waUrl,
+                width: 150,
+                height: 150,
+                colorDark: "#030712",
+                colorLight: "#FFFFFF",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        });
+
+        /* --- 1. Mouse Follower Glow Spotlight --- */
+        const cursorGlow = document.getElementById('cursor-glow');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorGlow.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+        });
+
+        /* --- 2. Dynamic Thunderstorm, Atmospheric Clouds & Interactive Lightning Canvas --- */
+        const canvas = document.getElementById('storm-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initClouds();
+        }
+
+        // Cloud Particle System
+        let clouds = [];
+        function initClouds() {
+            clouds = [];
+            const cloudCount = Math.floor(canvas.width / 180) + 12;
+            for (let i = 0; i < cloudCount; i++) {
+                clouds.push({
+                    x: Math.random() * canvas.width,
+                    y: (Math.random() * canvas.height * 0.6) - 50,
+                    radius: Math.random() * 140 + 100,
+                    alpha: Math.random() * 0.2 + 0.08,
+                    speed: (Math.random() * 0.3 + 0.1) * (Math.random() > 0.5 ? 1 : -1)
+                });
+            }
+        }
+
+        // Procedural Lightning Bolt Generation
+        let activeBolts = [];
+        let flashAlpha = 0;
+
+        function createLightningBolt(startX, startY, endX, endY, depth = 0) {
+            const points = [{ x: startX, y: startY }];
+            let currX = startX;
+            let currY = startY;
+
+            const steps = Math.floor(Math.random() * 6) + 8;
+            const dx = (endX - startX) / steps;
+            const dy = (endY - startY) / steps;
+
+            for (let i = 0; i < steps; i++) {
+                currX += dx + (Math.random() - 0.5) * 45;
+                currY += dy + (Math.random() - 0.5) * 35;
+                points.push({ x: currX, y: currY });
+
+                // Sub-branches
+                if (depth < 2 && Math.random() < 0.25) {
+                    const branchEndX = currX + (Math.random() - 0.5) * 150;
+                    const branchEndY = currY + Math.random() * 120;
+                    activeBolts.push(createLightningBolt(currX, currY, branchEndX, branchEndY, depth + 1));
+                }
+            }
+            points.push({ x: endX, y: endY });
+
+            return {
+                points: points,
+                life: 1.0,
+                maxLife: 1.0,
+                width: Math.max(1, 3.5 - depth * 1.2),
+                color: depth === 0 ? 'rgba(224, 242, 254, ' : 'rgba(56, 189, 248, '
+            };
+        }
+
+        function triggerLightning(targetX, targetY) {
+            const startX = targetX + (Math.random() - 0.5) * 300;
+            const startY = 0;
+            activeBolts.push(createLightningBolt(startX, startY, targetX, targetY));
+            flashAlpha = Math.min(0.35, flashAlpha + 0.25);
+        }
+
+        // Automatic Random Ambient Thunder Strikes
+        setInterval(() => {
+            if (Math.random() < 0.45) {
+                const randomX = Math.random() * canvas.width;
+                const randomY = Math.random() * (canvas.height * 0.7) + 50;
+                triggerLightning(randomX, randomY);
+            }
+        }, 3200);
+
+        // Interactive Lightning Trigger on Mouse Movements & Clicks
+        let lastTriggerTime = 0;
+        window.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastTriggerTime > 600 && Math.random() < 0.3) {
+                triggerLightning(e.clientX, e.clientY);
+                lastTriggerTime = now;
+            }
+        });
+
+        window.addEventListener('click', (e) => {
+            triggerLightning(e.clientX, e.clientY);
+        });
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function animateStorm() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Draw Lightning Flash Background Ambient
+            if (flashAlpha > 0.001) {
+                ctx.fillStyle = `rgba(186, 230, 253, ${flashAlpha})`;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                flashAlpha *= 0.88; // Decay flash
+            }
+
+            // 2. Render Storm Clouds
+            clouds.forEach(cloud => {
+                cloud.x += cloud.speed;
+                if (cloud.x - cloud.radius > canvas.width) cloud.x = -cloud.radius;
+                if (cloud.x + cloud.radius < 0) cloud.x = canvas.width + cloud.radius;
+
+                const grad = ctx.createRadialGradient(cloud.x, cloud.y, 10, cloud.x, cloud.y, cloud.radius);
+                grad.addColorStop(0, `rgba(15, 23, 42, ${cloud.alpha * 1.8})`);
+                grad.addColorStop(0.5, `rgba(30, 41, 59, ${cloud.alpha})`);
+                grad.addColorStop(1, 'rgba(3, 7, 18, 0)');
+
+                ctx.beginPath();
+                ctx.arc(cloud.x, cloud.y, cloud.radius, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+            });
+
+            // 3. Render Active Bolts
+            for (let b = activeBolts.length - 1; b >= 0; b--) {
+                const bolt = activeBolts[b];
+                const pts = bolt.points;
+
+                if (pts.length > 1) {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(pts[0].x, pts[0].y);
+                    for (let i = 1; i < pts.length; i++) {
+                        ctx.lineTo(pts[i].x, pts[i].y);
+                    }
+                    ctx.strokeStyle = bolt.color + bolt.life + ')';
+                    ctx.lineWidth = bolt.width;
+                    ctx.shadowColor = '#38bdf8';
+                    ctx.shadowBlur = 15;
+                    ctx.stroke();
+                    ctx.restore();
+                }
+
+                bolt.life -= 0.07;
+                if (bolt.life <= 0) {
+                    activeBolts.splice(b, 1);
+                }
+            }
+
+            requestAnimationFrame(animateStorm);
+        }
+
+        window.onload = function() {
+            animateStorm();
+        };
+
+        /* --- 3. Interactive 3D Card Tilt Effect --- */
+        const tiltCards = document.querySelectorAll('.tilt-card');
+
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
+        });
+
+        /* --- 4. Copy to Clipboard Functionality --- */
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast();
+                }).catch(() => fallbackCopy(text));
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(message = "Copied to clipboard!") {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
